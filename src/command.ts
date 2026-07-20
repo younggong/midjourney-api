@@ -36,17 +36,23 @@ export class Command {
     if (this.cache[name] !== undefined) {
       return this.cache[name];
     }
+    await this.allCommand();
+    if (this.cache[name] !== undefined) {
+      return this.cache[name];
+    }
+    // allCommand did not include this command; fall back to single fetch
     const command = await this.getCommand(name);
-    console.log("=========", { command });
     this.cache[name] = command;
     return command;
-    this.allCommand();
-    return this.cache[name];
   }
   async allCommand() {
-    let serverId = this.config.ServerId;
+    const serverId = this.config.ServerId;
     if (!serverId) {
-      serverId = this.config.ChannelId;
+      throw new Error(
+        "ServerId is required for guild API calls. " +
+        "Set ServerId to your Discord server (guild) ID — " +
+        "ChannelId is a channel identifier and cannot be used as a guild ID."
+      );
     }
     const url = `${this.config.DiscordBaseUrl}/api/v9/guilds/${serverId}/application-command-index`;
     const response = await this.safeFetch(url, {
@@ -65,9 +71,13 @@ export class Command {
   }
 
   async getCommand(name: CommandName) {
-    let serverId = this.config.ServerId;
+    const serverId = this.config.ServerId;
     if (!serverId) {
-      serverId = this.config.ChannelId;
+      throw new Error(
+        "ServerId is required for guild API calls. " +
+        "Set ServerId to your Discord server (guild) ID — " +
+        "ChannelId is a channel identifier and cannot be used as a guild ID."
+      );
     }
     const url = `${this.config.DiscordBaseUrl}/api/v9/guilds/${serverId}/application-command-index`;
     const response = await this.safeFetch(url, {
