@@ -223,6 +223,21 @@
 
 ---
 
+## 赞助商
+
+<p>
+  <a href="https://www.atlascloud.ai?ref=A84YS7">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="images/atlas-cloud-logo-white.svg">
+      <img src="images/atlas-cloud-logo-black.svg" alt="Atlas Cloud" height="48">
+    </picture>
+  </a>
+</p>
+
+[Atlas Cloud](https://www.atlascloud.ai?ref=A84YS7) 是一个全模态 AI 推理平台，开发者只需接入一次 AI API，即可使用视频生成、图像生成和大语言模型。无需分别对接多家供应商，一次接入即可统一使用 300+ 精选模型。
+
+---
+
 ## 支持一下我吧
 
 如果您觉得它很有价值，可以通过以下方式支持作者
